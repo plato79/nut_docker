@@ -1,0 +1,14 @@
+version: "3"
+services:
+  nut:
+    container_name: nut
+    network_mode: host
+    build: .
+    image: nut
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - <path_to_titledb>:/opt/nut/titledb
+      - <path_to_titles>:/opt/nut/titles
+      - <path_to_NSP|Z>:/opt/nut/scan
+    restart: unless-stopped

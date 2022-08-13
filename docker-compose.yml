@@ -1,0 +1,20 @@
+version: "3"
+services:
+  nut:
+    container_name: nut
+    build: .
+    image: nut
+    expose:
+      - ${PORT}/tcp
+    volumes:
+      - <path_to_titledb>:/opt/nut/titledb
+      - <path_to_titles>:/opt/nut/titles
+      - <path_to_NSP|Z>:/opt/nut/scan
+    restart: unless-stopped
+    networks:
+      pub_net:
+        ipv4_address: $IP_ADDR
+networks:
+  pub_net:
+    external:
+      name: pub_net
